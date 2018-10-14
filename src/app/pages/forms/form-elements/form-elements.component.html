@@ -1,0 +1,71 @@
+<card title="Detalles">
+    <br><br><br><br><br>
+<div *ngIf="pedidoExistente == 0">
+<div class="row" style="display: flex;justify-content: center;">
+  
+  
+  <!-- Div que muestra el mensaje correspondiente a la notificación pedido  no encontrado -->
+  <div class="col-md-6">
+    <card [customBgColor]="'rgba(220,20,60,0.6)'" [customColor]="'#fff'" [bgImage]="'assets/content/card-3.jpg'">
+      <p>Estimado usuario</p>
+      <ul>
+        <li>No hemos encontrado registros acerca de su pedido.</li>
+        <li>Por favor diríjase al módulo "Registro de Tallas" e ingrese su información.</li>
+        <li>Posterior al registro, regrese a este apartado para ver el detalle de su pedido, gracias.</li>
+      </ul>
+    </card>
+  </div>
+</div>
+</div>
+
+
+
+<!-- Div que muestra el detalle del pedido guardado -->
+
+<div *ngIf="pedidoExistente == 1">
+    <div class="row" style="display: flex;justify-content: center;">
+      <!-- Inicioa de la Tabla detalle pedido -->
+      <div class="col-lg-6">
+          <card title="Mi pedido" class="mb-lg-0">
+            <div class="table-responsive">
+                <div  *ngIf="infoCargda == false" id="spinner" style="display: flex;justify-content: center;">
+                  <mat-spinner class="col-mb-5" mode="indeterminate"></mat-spinner>
+                </div>
+              <table class="table" *ngIf="infoCargda == true">
+                <thead>
+                <tr>
+                  <th style="text-align:center;">Nombre de Prenda</th>
+                  <th style="text-align:center;">Color</th>
+                  <th style="text-align:center;">Talla</th>
+                  <th style="text-align:center;">Cantidad</th>
+                  <th style="text-align:center;">Imagen</th>
+                  <th style="text-align:center;" [ngClass] = "{'hide': currentUser.fiIdTipoPersonal == 2}">Característica</th>
+                  <th style="text-align:center;" [ngClass] = "{'hide': currentUser.fiIdTipoPersonal == 2}">Largo de manga</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let row of _objPedido"  class="table-success">
+                  <td style="text-align:center;">{{row.fcnombrePrenda}}</td>
+                  <td style="text-align:center;">{{row.fcColorPrenda}}</td>
+                  <td style="text-align:center;">{{row.fiIdProducto == 1 || row.fiIdProducto == 2 ? row.fiTallaPantalon : 
+                                                   row.fiIdProducto == 4 || row.fiIdProducto == 5  ? row.fcTallaPlayera : row.fcTallaCamisa}}</td>
+                  <td style="text-align:center;">{{row.fiCantidadPrenda}}</td>
+                  <td><img img [src]="row.fcUrlImagen" height="60" width="60" alt="" class="img-fluid mx-auto d-block"/></td>
+                  <td style="text-align:center;" [ngClass] = "{'hide': currentUser.fiIdTipoPersonal == 2}">{{row.fccaracteristicaPrenda}}</td>
+                  <td style="text-align:center;" [ngClass] = "{'hide': currentUser.fiIdTipoPersonal == 2}">{{row.fiIdProducto == 1 || row.fiIdProducto == 2 ? estatusNoAplica : row.fiLargoMangas}}</td>
+                </tr>
+                 <tr><td>Fecha de registro:</td><td><mat-form-field style="text-align:center;"><input type="text" matInput  value="{{ _fechaRegistro | date:'dd-MMM-yyyy'}}"></mat-form-field></td><td></td><td></td><td></td><td ></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </card>
+        </div>
+    
+      <!-- Fin de la Tabla detalle pedido  -->
+    </div>
+    </div>
+  <br><br><br><br><br>
+</card>
+
+  <br><br><br><br><br>
+

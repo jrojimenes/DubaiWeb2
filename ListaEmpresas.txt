@@ -1,0 +1,14 @@
+[
+    {
+        "fiIdEmpresa": "1",
+        "fcnombreEmpresa": "Grupo Dubai",
+        "fcemailEmpresa": "email@email.com",
+        "fctelefono": "000000000"
+    },
+    {
+        "fiIdEmpresa": "2",
+        "fcnombreEmpresa": "Nacional Monte de Piedad ",
+        "fcemailEmpresa": "email@email.com",
+        "fctelefono": "000000000"
+    }
+]

@@ -1,0 +1,194 @@
+<card title="Ingresa tus tallas" class="mb-0">
+        
+        <div *ngIf="pedidoExistente == 0" class="col-md-4">
+        <button mat-raised-button color="warn" (click)="showVideoHelp()">Video de ayuda, ¿Como Saber mi talla?</button>
+        </div>
+        <br>
+        <br>
+        <div *ngIf="pedidoExistente == 0" class="col-md-4">
+            <button mat-raised-button color="accent" (click)="formReset(1)">Limpiar Formulario</button>
+        </div>
+        <br>
+
+        <!-- Div que muestra el mensaje correspondiente a la notificación pedido  no encontrado -->
+  <div *ngIf="pedidoExistente == 1">
+  <div class="row" style="display: flex;justify-content: center;">
+  <div class="col-md-6">
+      <card [customBgColor]="'rgba(0,128,0,0.7)'" [customColor]="'#fff'" [bgImage]="'assets/content/card-2.jpg'">
+        <p>Estimado usuario</p>
+        <ul>
+          <li>Ya contamos con el registro de su pedido.</li>
+          <li>En caso de requerir modificación de datos contacte a su administrador, gracias!.</li>
+        </ul>
+      </card>
+    </div>
+  </div>
+  </div>
+  <br><br>
+  <form [formGroup]="form" (ngSubmit)="guardarPedido()">
+      <card title="Detalle de medidas" class="mb-0">
+          <div class="table-responsive">
+              <table class="table">
+                <thead class="thead-inverse">
+                <tr>
+                  <th>Descripción</th>
+                  <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                   <td>Talla de pantalon en centímetros</td>
+                   <td>
+                      <mat-form-field>
+                          <input type="number" matInput placeholder="{{placeholder_txtpantaloncm}}" [formControl]="form.controls['ftallaPantaloncm']" (change) = "validaTallaPantalon($event.target.value)">
+                        </mat-form-field>
+                          <mat-error *ngIf="form.controls['ftallaPantaloncm'].hasError('required') && form.controls['ftallaPantaloncm'].touched">
+                            Debes ingresar la talla de pantalon en centimetros.
+                          </mat-error>
+                          <mat-error *ngIf="form.controls['ftallaPantaloncm'].hasError('minlength') && form.controls['ftallaPantaloncm'].touched">
+                            El formato debe ser 00.00, verifica tu información. 
+                          </mat-error>
+                          <mat-error *ngIf="form.controls['ftallaPantaloncm'].hasError('maxlength') && form.controls['ftallaPantaloncm'].touched">
+                            El formato debe ser 000.00, verifica tu información.
+                          </mat-error>
+                   </td>
+                  </tr>
+                  <tr>
+                  <td>Talla comercial de pantalon</td>
+                  <td>
+                      <ng-select  [items]         ="talla_pantalonfiltrado"
+                                  bindLabel       ="fntallaPantalon"
+                                  bindValue       ="fntallaPantalon" 
+                                  formControlName ="fctallaPantalon" 
+                                  placeholder = "Selecciona la talla de Pantalón">
+                      </ng-select>
+        
+           <mat-error *ngIf="form.controls['fctallaPantalon'].hasError('required') && form.controls['fctallaPantalon'].touched">
+            Debes seleccionar esta opción. Puedes comenzar con la talla de pantalón en cm o con tu talla de camisa.
+          </mat-error>
+
+                  </td>
+                  </tr>
+                  <tr>
+                  <td>{{titulo_txtcamisaplayera}}</td>
+                  <td>
+                    <mat-form-field class="col-mb-4">
+                      <input matInput placeholder="{{placeholder_txtplayeracamisa}}" [matAutocomplete]="auto" [formControl]="stateCtrl">
+                  </mat-form-field>
+                    
+                  
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let state of filteredStates | async" 
+                                       [value]="state.fntallacomercialcamisa"
+                                       (click) ="onSelectTallaCamisa(state.fntallacamisapulgadas, state.fntallacomercialcamisa)">
+                            <span [ngClass] = "{ 'hide': currentUser.fiIdTipoPersonal == 2}"> {{state.fntallacamisa}} " / {{state.fntallacomercialcamisa}} Talla </span>
+                            <span [ngClass] = "{ 'hide': currentUser.fiIdTipoPersonal == 1}"> {{state.fntallacamisa}} </span>
+                          </mat-option>
+                        </mat-autocomplete>
+                     <mat-error *ngIf="form.controls['fctallaCamisa'].hasError('required') && form.controls['fctallaCamisa'].touched">
+                      Debes seleccionar la talla de camisa.
+                    </mat-error> 
+                  </td>
+                  </tr>
+                  
+                  <tr [ngClass] = "{ 'hide': currentUser.fiIdTipoPersonal == 2}">
+                  <td>Largo de manga (pulgadas)</td>
+                  <td>
+                    
+                      <ng-select [items]="largo_manga"
+                            bindLabel       ="fcPulgadasLargoManga"
+                            bindValue       ="fiLargoMangaNumero" 
+                            formControlName ="fclargoMangas" 
+                            placeholder="Selecciona largo de mangas">
+                      </ng-select>
+                          <mat-error *ngIf="form.controls['fclargoMangas'].hasError('required') && form.controls['fclargoMangas'].touched">
+                              Debes seleccionar el largo de las mangas.
+                            </mat-error>
+                  </td>
+                  </tr>
+              </tbody>
+            </table>
+            <br>
+<br>
+<br>
+<br>
+          </div>
+          </card>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>      
+              <card title="Detalle del pedido" class="mb-0">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="thead-inverse">
+                    <tr>
+                      <th>#</th>
+                      <th>Descripción de la prenda</th>
+                      <th>Cantidad de piezas</th>
+                      <th>Color de la prenda</th>
+                      <th>Click en la imagen</th>
+                      <th>Características de la prenda</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let row of conf_PedidosVariable">
+                      <th scope="row">{{row.fiIdDetallePaquetes}}</th>
+                      <td>{{row.fcDescripcion}}</td>
+                      <td>{{row.fiCantidadProducto}}</td>
+                      <td>{{row.fcnombreColor}}</td>
+                      <td>
+                          
+                              <div class="work_box">
+                                  <a href="{{row.fcUrlImagen}}" class="btn btn_outline_custom img-zoom">
+                                      <div class="work_img">
+                                          <img img [src]="row.fcUrlImagen" height="60" width="60" alt="" class="img-fluid mx-auto d-block"/>
+                                      </div>
+                                  </a>
+                              </div>
+                    </td>
+                      <td>
+                        <div [ngClass] = "{ 'hide': row.fiIdProducto == 1 || row.fiIdProducto == 2 || row.fiIdProducto == 4 || row.fiIdProducto == 5}">
+                        <ng-select  [items]         ="det_productosFiltrados"
+                                    bindLabel       ="fcDescripcion"
+                                    bindValue       ="fiIdCaract" 
+                                    formControlName ="creditCard" 
+                                    placeholder = "Selecciona caracteristica"
+                                    (change)        ="onSelect($event, row.fiIdDetallePaquetes)"
+                                    (click) = "filtra(row.fiIdProducto, row.fiIdDetallePaquetes)"
+                                    >
+                        </ng-select>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                </div>
+              </card>
+              <br>
+              <br>
+    <button *ngIf="pedidoExistente == 0" mat-raised-button color="accent" [disabled]="!form.valid">Guardar</button>
+  </form>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+</card>
+

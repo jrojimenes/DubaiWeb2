@@ -1,0 +1,107 @@
+
+<card title="Mis datos">
+    <br>
+    <br>
+    <br>
+    <br>
+    
+     <div class="row" style="display: flex;justify-content: center;">
+      <img src="assets/images/imgUsuarios/generica_perfil.jpg" width="150" height="150" alt="">
+      </div>
+
+      <div class="container" style="display: flex;justify-content: center;">
+    <br>
+    <br>
+    <br>  
+      <div class="table-responsive">
+          <form [formGroup]="ActualizaDatosUsuario" (ngSubmit)="actualizaDatos()">
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                  </tr> 
+                  </thead>
+                  <tbody>
+      <tr>
+        <td><label for="fcNombre" class="col-sm-3 col-md-3 col-form-label mb-0">Nombre</label></td>
+        <td><mat-form-field class="col-md-10" style="text-align:center;">
+            <input matInput id="fcnombre" type="text" value="{{currentUser.fcnombrePersonal}}  {{currentUser.fcapellidoPaterno}}  {{currentUser.fcapellidoMaterno}}" [readonly]= "true">
+          </mat-form-field>
+        </td>
+        </tr>
+          <tr>
+              <td><label for="fiIdPersonal" class="col-sm-3 col-md-2 col-form-label mb-0">Numero de empleado</label></td>
+              <td><mat-form-field class="mb-2" style="text-align:center;">
+                  <input matInput id="fiIdPersonal" type="number" value="{{currentUser.finumeroEmpleado}}" [readonly]= "true">
+                </mat-form-field>
+              </td>
+              </tr>
+            <tr>
+            <td><label for="fcEmail" class="col-sm-3 col-md-2 col-form-label mb-0">Email</label></td>
+            <td>
+              <mat-form-field style="text-align:center;">
+                  <input matInput [formControl]="ActualizaDatosUsuario.controls['fcEmail']" type="email" placeholder="{{currentUser.fcmail}}" ng-model="currentMail">
+                  <mat-error *ngIf="ActualizaDatosUsuario.controls['fcEmail'].hasError('required') && ActualizaDatosUsuario.controls['fcEmail'].touched">
+                    Debes ingresar tu correo electronico.
+                  </mat-error>
+                  <mat-error *ngIf="ActualizaDatosUsuario.controls['fcEmail'].errors?.email && ActualizaDatosUsuario.controls['fcEmail'].touched">
+                    El correo ingresado es erroneo, verifica tu información.
+                  </mat-error>
+                </mat-form-field>
+            </td>
+            </tr>
+            <tr>
+            <td><label class="col-sm-3 col-md-2 col-form-label mb-0">Teléfono</label></td>
+            <td>
+              <mat-form-field>
+                  <input matInput [formControl]="ActualizaDatosUsuario.controls['fctelefono']" type="text" placeholder="{{currentUser.fctelefono}}" ng-model="currentMail">
+                  <mat-error *ngIf="ActualizaDatosUsuario.controls['fctelefono'].hasError('required') && ActualizaDatosUsuario.controls['fctelefono'].touched">
+                    Debes ingresar tu número telefónico.
+                  </mat-error>
+                  <mat-error *ngIf="ActualizaDatosUsuario.controls['fctelefono'].errors?.email && ActualizaDatosUsuario.controls['fctelefono'].touched">
+                    El formato ingresado es erroneo, verifica tu información.
+                  </mat-error>
+                </mat-form-field>
+            </td>
+            </tr>
+            <tr>
+            <td><label for="fcempresa" class="col-sm-3 col-md-3 col-form-label mb-0">Empresa</label></td>
+            <td><mat-form-field class="col-md-5">
+                <input matInput id="fcempresa" type="text" value="{{currentUser.fcempresa}}" [readonly]= "true">
+              </mat-form-field>
+            </td>
+            </tr>
+          <tr>
+          <td><label for="fcsucursal" class="col-sm-3 col-md-3 col-form-label mb-0">Sucursal</label></td>
+          <td><mat-form-field class="col-md-8" style="text-align:center;">
+              <input matInput id="fcsucursal"  value="{{currentUser.fcsucursal}}" [readonly]= "true">
+            </mat-form-field>
+          </td>
+          </tr>
+
+                  </tbody>  
+          </table>  
+    <div class="col-sm-9 col-md-10">
+      <button mat-raised-button color="warn" [disabled]="!ActualizaDatosUsuario.valid">Guardar</button>
+    </div>
+    </form>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</card>

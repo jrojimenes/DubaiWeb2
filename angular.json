@@ -23,7 +23,20 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./src/assets/css/font-awesome.min.css",
+              "./src/assets/css/magnific-popup.css",
+              "./src/assets/css/owl.carousel.css",
+              "./src/assets/css/owl.theme.css",
+              "./src/assets/sass/loader.scss",
+              "./src/assets/css/owl.transitions.css",
+              "./src/assets/css/pe-7s-icon.css",
+              "./src/assets/css/materialdesignicons.min.css",
+              "./src/assets/css/bootstrap.min.css",
+              "./src/assets/sass/bootstrap.scss",
+              "./src/assets/css/style.css",
+              "./src/assets/sass/custom-material-theme.scss",
+              "./node_modules/leaflet/dist/leaflet.css",
+              "./node_modules/angular-calendar/css/angular-calendar.css"
             ],
             "scripts": []
           },

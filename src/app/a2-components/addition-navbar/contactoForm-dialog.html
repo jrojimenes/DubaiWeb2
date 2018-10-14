@@ -1,0 +1,41 @@
+<card [title]="'Ponte en contacto con nosotros'" class="col-mb-4">
+
+        <div class="table-responsive">
+                <form [formGroup]="form" (ngSubmit)="EnviarMensaje()">
+                <table class="table">
+                
+                <tbody>
+                    <tr>
+                     <td>Asunto</td>
+                     <td>
+                            <mat-form-field>
+                                    <input matInput placeholder="Ingresa el asunto" [formControl]="form.controls['fcAsunto']">
+                                    <mat-error *ngIf="form.controls['fcAsunto'].hasError('required') && form.controls['fcAsunto'].touched">
+                                      Debes completar este campo.
+                                    </mat-error>
+                                  </mat-form-field>     
+                    </td>
+                    </tr>
+                    <td>Descripción:</td>
+                    <td >
+                            <mat-form-field class="col-md-12">
+                                    <textarea matInput placeholder="Ingresa el detalle del mensaje" [formControl]="form.controls['fcDetalle']"></textarea>
+                                    <mat-error *ngIf="form.controls['fcDetalle'].hasError('required') && form.controls['fcDetalle'].touched">
+                                      Por favor, describe el motivo del mensaje.
+                                    </mat-error>
+                                  </mat-form-field>  
+
+                    </td>
+                    <tr>
+
+                    </tr>
+                    </tbody>
+                    </table>
+                    <div>
+                            <button mat-raised-button color="warn" [disabled]="!form.valid">Envíar</button>
+                          </div>
+                </form>
+        </div>
+
+
+</card>

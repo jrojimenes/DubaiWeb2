@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+        <card [title]="'Mensaje del Sistema'">
+        <alert [color]="getColor(data.tipo)"><strong>{{data.mensaje}}</strong></alert>
+      </card>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Aceptar</button>
+    </div>

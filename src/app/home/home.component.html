@@ -1,0 +1,546 @@
+  <!-- START NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top custom-nav sticky">
+    <div class="container">
+        <!-- LOGO -->
+       <a class="navbar-brand logo" href="#home">
+            <img src="assets/images/logo.png" alt="" class="img-fluid logo-light"> 
+            <img src="assets/images/logo-dark.png" alt="" class="img-fluid logo-dark">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="mdi mdi-menu"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a href="#home" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">Acerca de nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#client" class="nav-link">Nuestros clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#portfolio" class="nav-link">Galería</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contacto</a>
+                </li>
+            </ul>
+            <div>
+                <ul class="text-right list-unstyled list-inline mb-0 social_menu">
+                    <li class="list-inline-item"><a href="#home"><i class="mdi mdi-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="#home"><i class="mdi mdi-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="#home" (click)="redirecFacebook()"><i class="mdi mdi-facebook" ></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- END NAVBAR -->
+
+ <!-- Home Section Start-->
+ <section class="bg-dark full_height_100vh_home" id="home">
+  <div class="bg_overlay_cover_on"></div>
+  <a id="video" class="youtube-bg" data-property="{videoURL:'https://youtu.be/I-SJBRTMMF4',containment:'#home', showControls:false, autoPlay:true, loop:true, mute:true, startAt:0, opacity:1, quality:'default'}"></a>
+  <div class="home_table_cell">
+      <div class="home_table_cell_center">
+          <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-lg-12">
+                      <div class="text-center mx-auto home_text_personal">
+                          <h4 class="home-top-title text-white mb-3" style="font-family: 'Sawarabi Mincho', sans-serif; font-size: 100px">Bienvenido</h4>
+                          <h1 class="home_title text-white text-capitalize mb-0" style="font-family: 'Sawarabi Mincho', sans-serif; font-size: 60px">Grupo Dubai</h1>
+                          <div class="home_text_details">
+                              <p class="home_subtitle mx-auto mt-4 mb-0 pb-2" style="font-family: 'Sawarabi Mincho', sans-serif; font-size: 20px"> La imagen de su empresa es nuestra pasión.</p>
+                          </div>
+
+                          <div class="home_btn_manage mt-4 pt-2">
+                            <a href="#" class="btn btn_outline_custom btn-rounded" (click)="ConsultaEmpresas()"  data-toggle="modal" data-target="#ModalLogin">Iniciar sesión</a>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Home Section End-->
+
+<!-- Start About -->
+<section class="section_all" id="about">
+    <div class="container">
+
+        <div class="row mt-5 vertical_content_manage">
+            <div class="col-lg-8">
+                    <h4><span class="font-weight-bold text_custom">Grupo Dubai
+                    </span></h4>
+                    <div class="about_content_info mt-3 row justify-content-center">
+                    <p class="text-muted mt-4" style="text-align:justify; font-size: 26px;">
+                     Somos una empresa dedicada a la fabricación de uniformes ejecutivos para dama y caballero con una experiencia de más de 18 años en el mercado.
+                     Expertos en la confección y diseño de uniformes corporativos y empresariales, nuestra dedicación, es por eso
+                     que mantenemos altos estándares de calidad, porque para nosotros la imagen de su empresa es nuestra pasión.
+                    </p>
+                </div>
+                    <div class="about_social_icons mt-4">
+                        <ul class="list-unstyled">
+                            <li class="list-inline-item"><a href="#home" (click)="redirecFacebook()"><i class="mdi mdi-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-google-plus"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-apple"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-dribbble"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="mdi mdi-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mt-3">
+                    <img src="assets/images/about_me.jpg" alt="" class="img-fluid mx-auto d-block img-thumbnail">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End About -->
+
+<!-- Start Services -->
+<section class="section_all bg-light" id="services">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h3><span class="font-weight-bold text_custom">Nuestros Servicios</span></h3>  
+                    <p class="text-muted mx-auto section_subtitle mt-3" style="text-align: justify; font-size: 26px;">
+                            Contamos con más de 18 años de  experiencia  en la fabricación de uniformes ejecutivos para dama y caballero, realizamos la  visión corporativa de cada empresa y diseñamos uniformes de acuerdo a sus necesidades, sin olvidar la elegancia, calidad, practicidad  e imagen que ustedes requieren.
+                            Trabajamos con materia prima de la más alta calidad, incorporando productos nacionales y extranjeros  en todos los procesos de fabricación, contamos con un amplio catálogo de telas, texturas y  colores para satisfacer sus necesidades.</p>                          
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-4">
+                <div class="text-center services_box p-4 mt-3">
+                    <div class="service_icon text-center">
+                        <i class="pe-7s-users"></i>
+                    </div>
+                    <div class="service_content mt-4">
+                        <h5 class="font-weight-bold">Diseño de uniformes</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="text-center services_box p-4 mt-3">
+                    <div class="service_icon text-center">
+                        <i class="pe-7s-magic-wand"></i>
+                    </div>
+                    <div class="service_content mt-4">
+                        <h5 class="font-weight-bold">Confección de uniformes</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="text-center services_box p-4 mt-3">
+                    <div class="service_icon text-center">
+                        <i class="pe-7s-diamond"></i>
+                    </div>
+                    <div class="service_content mt-4">
+                        <h5 class="font-weight-bold">Uniformes corporativos</h5>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="text-center services_box p-4 mt-3">
+                    <div class="service_icon text-center">
+                        <i class="pe-7s-cash"></i>
+                    </div>
+                    <div class="service_content mt-4">
+                        <h5 class="font-weight-bold">Uniformes empresariales</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="text-center services_box p-4 mt-3">
+                    <div class="service_icon text-center">
+                        <i class="pe-7s-wristwatch"></i>
+                    </div>
+                    <div class="service_content mt-4">
+                        <h5 class="font-weight-bold">Diseños a corde a tendencias de moda</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="text-center services_box p-4 mt-3">
+                    <div class="service_icon text-center">
+                        <i class="pe-7s-scissors"></i>
+                    </div>
+                    <div class="service_content mt-4">
+                        <h5 class="font-weight-bold">Asesoria en moda</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Services -->
+
+<!-- Start CTA -->
+<section class="section_all bg_cta_personal_img">
+    <div class="bg_overlay_cover_on"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h2 class="text-white font-weight-bold">Conoce nuestra linea {{currentYear}}.</h2>
+                </div>
+                <div class="text-center mt-4">
+                    <div class="work_box">
+                        <a href="assets/images/lineas/2018/img1.jpg" class="btn btn_outline_custom img-zoom">
+                            Abrir galeria
+                        </a>
+                    </div>
+                    <div class="work_box">
+                        <a href="assets/images/lineas/2018/img2.jpg" class="img-zoom">
+                        </a>
+                    </div>
+                    <div class="work_box">
+                        <a href="assets/images/lineas/2018/img3.jpg" class="img-zoom">
+                        </a>
+                    </div>
+                    <div class="work_box">
+                        <a href="assets/images/lineas/2018/img4.jpg" class="img-zoom">
+                        </a>
+                    </div>
+                    <div class="work_box">
+                        <a href="assets/images/lineas/2018/img5.jpg" class="img-zoom">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End CTA -->
+
+<!-- Start Testimonial -->
+<section class="section_all" id="client">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h3><span class="font-weight-bold text_custom">Nuestros clientes</span></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5 justify-content-center">
+            <div class="col-lg-12">                    
+                <div id="owl_clients">
+                    <div class="item">
+                        <div class="client_box client_content mx-auto">
+                            <img src="assets/images/client/client-1.jpg" alt="" class="img-fluid mx-auto d-block rounded-circle">
+                            <div class="testi-desc text-center p-4 mt-4">                                        
+                                <p class="text-muted client_info">"Libertad"</p>
+                                <p class="user-work mb-0 client_info_sub"><i> Servicios financieros</i></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="client_box client_content mx-auto">
+                            <img src="assets/images/client/client-2.jpg" alt="" class="img-fluid mx-auto d-block rounded-circle">
+                            <div class="testi-desc text-center p-4 mt-4">
+                                <p class="text-muted client_info">"Grupo femsa"</p>
+                                <p class="user-work mb-0 client_info_sub"> <i> Coca Cola<span class="text-custom"></span></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="item">
+                            <div class="client_box client_content mx-auto">
+                                <img src="assets/images/client/client-3.jpg" alt="" class="img-fluid mx-auto d-block rounded-circle">
+                                <div class="testi-desc text-center p-4 mt-4">
+                                    <p class="text-muted client_info">"Caja Popular Mexicana"</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div class="item">
+                        <div class="client_box client_content mx-auto">
+                            <img src="assets/images/client/client-4.jpg" alt="" class="img-fluid mx-auto d-block rounded-circle">
+                            <div class="testi-desc text-center p-4 mt-4">
+                                <p class="text-muted client_info">"Qualitas"</p>
+                                <p class="user-work mb-0 client_info_sub"> <i>Seguros</i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="client_box client_content mx-auto">
+                            <img src="assets/images/client/client-5.png" alt="" class="img-fluid mx-auto d-block rounded-circle">
+                            <div class="testi-desc text-center p-4 mt-4">
+                                <p class="text-muted client_info">"Gas Uribe"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="client_box client_content mx-auto">
+                            <img src="assets/images/client/client-6.jpg" alt="" class="img-fluid mx-auto d-block rounded-circle">
+                            <div class="testi-desc text-center p-4 mt-4">
+                                <p class="text-muted client_info">"Sindicato de telefonistas de la Republica Mexicana"</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Testimonial -->
+
+
+<!-- Start Portfolio -->
+<section class="section_all text-center bg-light" id="portfolio">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h3><span class="font-weight-bold text_custom">Nuestro Trabajo</span></h3>
+                </div>
+            </div>
+        </div>      
+    </div>
+    <div class="container">
+        <div class="row mt-5 work-filter">
+            <div class="col-lg-4 work_item webdesign wordpress">
+                <div class="work_box">
+                    <a href="assets/images/portfolio/portfolio-1.png" class="img-zoom">
+                        <div class="work_img">
+                            <img src="assets/images/portfolio/portfolio-1.png" alt="" class="img-fluid mx-auto d-block"/>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 work_item WORK webdesign seo">
+                <div class="work_box">
+                    <a href="assets/images/portfolio/portfolio-2.png" class="img-zoom">
+                        <div class="work_img">
+                            <img src="assets/images/portfolio/portfolio-2.png" alt="" class="img-fluid mx-auto d-block"/>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 work_item seo wordpress">
+                <div class="work_box">
+                    <a href="assets/images/portfolio/portfolio-3.png" class="img-zoom">
+                        <div class="work_img">
+                            <img src="assets/images/portfolio/portfolio-3.png" alt="" class="img-fluid mx-auto d-block"/>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 work_item wordpress WORK webdesign">
+                <div class="work_box">
+                    <a href="assets/images/portfolio/portfolio-4.jpg" class="img-zoom">
+                        <div class="work_img">
+                            <img src="assets/images/portfolio/portfolio-4.jpg" alt="" class="img-fluid mx-auto d-block"/>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 work_item seo webdesign">
+                <div class="work_box">
+                    <a href="assets/images/portfolio/portfolio-5.jpg" class="img-zoom">
+                        <div class="work_img">
+                            <img src="assets/images/portfolio/portfolio-5.jpg" alt="" class="img-fluid mx-auto d-block"/>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 work_item devlopment webdesign">
+                <div class="work_box">
+                    <a href="assets/images/portfolio/portfolio-6.jpg" class="img-zoom">
+                        <div class="work_img">
+                            <img src="assets/images/portfolio/portfolio-6.jpg" alt="" class="img-fluid mx-auto d-block"/>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 work_item devlopment webdesign">
+                    <div class="work_box">
+                        <a href="assets/images/portfolio/portfolio-7.jpg" class="img-zoom">
+                            <div class="work_img">
+                                <img src="assets/images/portfolio/portfolio-7.jpg" alt="" class="img-fluid mx-auto d-block"/>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 work_item devlopment webdesign">
+                        <div class="work_box">
+                            <a href="assets/images/portfolio/portfolio-8.jpg" class="img-zoom">
+                                <div class="work_img">
+                                    <img src="assets/images/portfolio/portfolio-8.jpg" alt="" class="img-fluid mx-auto d-block"/>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 work_item devlopment webdesign">
+                            <div class="work_box">
+                                <a href="assets/images/portfolio/portfolio-10.jpg" class="img-zoom">
+                                    <div class="work_img">
+                                        <img src="assets/images/portfolio/portfolio-10.jpg" alt="" class="img-fluid mx-auto d-block"/>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+        </div>
+    </div>
+</section>
+<!-- End Portfolio -->
+
+<!-- Start contact  -->
+<section class="section_all bg_contact" id="contact">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h3><span class="font-weight-bold text_custom">Nos ponemos a su dispocición</span></h3>
+                    <p class="text-muted mx-auto section_subtitle_direccion mt-3" style="font-size:21px;">
+                            Carretera Ocoyoacac km. 0.2 Interior piso 2, Col. Parque Industrial
+
+                            Ocoyoacac, Edo de Mex. C.P. 52757, Condominio Industrial JM.
+                            
+                            Teléfonos : 01(728) 1054001 al 04     
+                        
+                   .</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn_custom btn_rounded_border" data-toggle="modal" data-target="#exampleModalCenter">Envíanos un mensaje</button>
+
+                    <!-- Modal Contacto-->
+                    <div class="modal fade" id="exampleModalCenter">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title mb-0 font-weight-bold" id="exampleModalLongTitle"> Ingresa tu información</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                        <form [formGroup] = "contactForm" class="custom_form_body" (ngSubmit)="onSendMail()">
+                                        <div class="form-group">
+                                            <label for="fcnombre">Nombre</label>
+                                            <input type="text" formControlName="fcnombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && c.fcnombre.errors }" />
+                                            <mat-error *ngIf="contactForm.controls['fcnombre'].hasError('required') && contactForm.controls['fcnombre'].touched">
+                                                Debes ingresar tu nombre.
+                                              </mat-error>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fcEmail">Email</label>
+                                            <input type="email" formControlName="fcEmail" class="form-control" [ngClass]="{ 'is-invalid': submitted && c.fcEmail.errors }" />
+                                            <mat-error *ngIf="contactForm.controls['fcEmail'].hasError('required') && contactForm.controls['fcEmail'].touched">
+                                                Debes ingresar tu correo electronico.
+                                              </mat-error>
+                                              <mat-error *ngIf="contactForm.controls['fcEmail'].errors?.email && contactForm.controls['fcEmail'].touched">
+                                                El correo ingresado es erroneo, verifica tu información.
+                                              </mat-error>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="fcAsunto">Asunto</label>
+                                            <input type="fcAsunto" formControlName="fcAsunto" class="form-control" [ngClass]="{ 'is-invalid': submitted && c.fcAsunto.errors }" />
+                                            <mat-error *ngIf="contactForm.controls['fcAsunto'].hasError('required') && contactForm.controls['fcAsunto'].touched">
+                                                Por favor, ingresa el asunto del mensaje.
+                                              </mat-error>
+                                        </div>
+
+                                        <div class="form-group mt-2">
+                                            <label for="fccomments">Comentarios</label>
+                                            <textarea rows="6" formControlName="fccomments" class="form-control" [ngClass]="{ 'is-invalid': submitted && c.fccomments.errors }"></textarea>
+                                            <mat-error *ngIf="contactForm.controls['fccomments'].hasError('required') && contactForm.controls['fccomments'].touched">
+                                                Por favor describe tu mensaje.
+                                            </mat-error>
+                                        </div>
+                                            <button class="btn btn_custom w-50" [disabled]="!contactForm.valid">Enviar</button>
+                                    </form>
+                                </div>
+                                <alertfront></alertfront>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End contact  -->
+<!-- Modal Login-->
+<div class="modal fade" id="ModalLogin">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mb-0 font-weight-bold" id="exampleModalLongTitle">Ingresa a tu portal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="loginForm" class="custom_form_body" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                                <label for="username">Empresa</label>
+                                  <ng-select [items]="empresas"
+                                             bindLabel="fcnombreEmpresa"
+                                             bindValue="fiIdEmpresa"
+                                             formControlName="username"
+                                             [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                                             >
+                                 </ng-select>
+
+                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                    <div *ngIf="f.username.errors.required">El campo empresa es requerido</div>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                                <label for="password">Numero Empleado</label>
+                                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">El campo numero empleado es requerido</div>
+                                </div>
+                        </div>
+                            <button class="btn btn_custom w-50">Confirmar</button>
+                    </form> 
+                </div>
+                <alertfront></alertfront>
+            </div>
+        </div>
+    </div>
