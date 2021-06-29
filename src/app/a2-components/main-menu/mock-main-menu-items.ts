@@ -227,7 +227,7 @@ export const MAINMENUITEMS: MainMenuItem[] = [
   //   budgeColor: ''
   // },
   {
-    title: ' Tallas',
+    title: 'Tallas',
     icon: 'fa fa-check-square-o',
     active: false,
     groupTitle: false,

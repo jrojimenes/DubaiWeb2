@@ -9,10 +9,10 @@ export class guardaDetallePedido {
     constructor(private http: HttpClient) { }
     
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    //  baseUrl ="/api";
+      baseUrl ="/api";
 respuesta: any;
     guardaDetallePedido(params: detallePedido) {
         // console.log("entro detalle");

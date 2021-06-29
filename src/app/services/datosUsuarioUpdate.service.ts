@@ -9,10 +9,10 @@ export class datosUsuarioUpdateService {
     constructor(private http: HttpClient) { }
     
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    // baseUrl ="/api";
+     baseUrl ="/api";
 
     actualizaDatos(params: ParametrosUpdate) {
 

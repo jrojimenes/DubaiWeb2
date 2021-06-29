@@ -13,10 +13,10 @@ export class TallasPantalonService {
     constructor(private http: HttpClient) { }
 
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    // baseUrl ="/api";
+     baseUrl ="/api";
 
     tallas : tallasPantalon;
     getTallasPantalon() {        

@@ -9,10 +9,10 @@ export class guardaCabeceraPedido {
     constructor(private http: HttpClient) { }
     
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    //  baseUrl ="/api";
+      baseUrl ="/api";
 respuesta: any;
     guardaPedido(params: cabecerroPedido) {
         return this.http.post<any>(`${this.baseUrl}/guardaCabeceroPedido.back.php`,  params )

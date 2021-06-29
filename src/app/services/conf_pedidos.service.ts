@@ -12,10 +12,10 @@ export class Conf_Pedidos {
     constructor(private http: HttpClient) { }
 
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    // baseUrl ="/api";
+     baseUrl ="/api";
 
     config : configPedidos;
 

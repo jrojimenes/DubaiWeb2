@@ -209,7 +209,6 @@ largo_manga = [
              this.rel_CuelloPant = respuesta;
        },
        error =>{
-
       this.mensaje_front = "Error al consultar la configuración cuello -pantalon" + error.toString();
       this.tipo_front = 1;
       const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {

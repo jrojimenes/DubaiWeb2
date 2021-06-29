@@ -13,10 +13,10 @@ export class Caract_Productos {
     constructor(private http: HttpClient) { }
 
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    // baseUrl ="/api";
+     baseUrl ="/api";
 
     caract : CaractProductos;
 

@@ -14,10 +14,10 @@ export class AuthenticationService {
     user : User;
     
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    // baseUrl ="/api";
+     baseUrl ="/api";
 
     
     login(idEmpresa: string, password: string) {

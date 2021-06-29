@@ -14,10 +14,10 @@ export class relacionCPantalon {
     constructor(private http: HttpClient) { }
 
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    // baseUrl ="/api";
+     baseUrl ="/api";
 
     relacionCP : relacionCuelloPantalon;
     getRelCuelloPant() {        

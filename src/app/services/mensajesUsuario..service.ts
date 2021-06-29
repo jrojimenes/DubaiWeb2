@@ -9,10 +9,10 @@ export class guardaMensajeUsr {
     constructor(private http: HttpClient) { }
     
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    //  baseUrl ="/api";
+      baseUrl ="/api";
 
     guardaMensajeUsuario(params: ParametrosMensajeUsr) {
         // console.log(params);

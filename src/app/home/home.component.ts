@@ -72,8 +72,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
                 });
             }
             ngAfterViewInit(){
-              
-                
             }
 
        // convenience getter for easy access to form fields
@@ -93,7 +91,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             .subscribe(
                 data => {
                     localStorage.setItem('currentEmployeId', this.f.username.value); 
-                    this.router.navigateByUrl(this.returnUrl);
+                    this.router.navigateByUrl(this.returnUrl); //-> url a la que quieres navegar
                 },
                 error => {
                     this.alertService.error(error);

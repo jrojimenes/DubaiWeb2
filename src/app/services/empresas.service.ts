@@ -13,10 +13,10 @@ export class EmpresasService {
     constructor(private http: HttpClient) { }
 
     //*****Produccion*****/
-    baseUrl ="../../api";
+    //baseUrl ="../../api";
     
     //*****Desarrollo*****/
-    // baseUrl ="/api";
+     baseUrl ="/api";
 
 empresas : Empresas;
     getEmpresas() {

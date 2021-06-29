@@ -7,10 +7,10 @@ import { BrowserAnimationsModule }          from '@angular/platform-browser/anim
 import {NgSelectModule} from '@ng-select/ng-select';
 
 // videogular
-import {VgCoreModule} from 'videogular2/core';
-import {VgControlsModule} from 'videogular2/controls';
+import {VgCoreModule}        from 'videogular2/core';
+import {VgControlsModule}    from 'videogular2/controls';
 import {VgOverlayPlayModule} from 'videogular2/overlay-play';
-import {VgBufferingModule} from 'videogular2/buffering';
+import {VgBufferingModule}   from 'videogular2/buffering';
 
 
 import {
