@@ -1,0 +1,4 @@
+
+Te ubicas mediante consola en la carpeta C:\xampp\php, o donde tengas el ejecutable php.exe
+
+php.exe -S 127.0.0.1:8090 -t C:\Users\Rodrigo\Desktop\php-backend
