@@ -92,7 +92,7 @@ export class PageFormLayoutComponent implements OnInit, OnDestroy {
   mensajeAviso(){
   if(this.currentUser.fcmail == null || this.currentUser.fctelefono == null || this.currentUser.fcmail == '' || this.currentUser.fctelefono == '' )
     {
-      this.mensaje_front = "Para grupo Dubai es importante la comunicación con sus clientes, por favor ingresa tus datos de contacto como correo electronico y teléfono. Gracias!"
+      this.mensaje_front = "Para grupo FERSAN es importante la comunicación con sus clientes, por favor ingresa tus datos de contacto como correo electronico y teléfono. Gracias!"
       this.tipo_front = 2;
       const dialogRef = this.dialog.open(RegistraInfoUsuariosDialog, {
         width: '550px',

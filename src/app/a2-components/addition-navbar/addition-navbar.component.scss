@@ -36,7 +36,7 @@
     align-items: center;
     background: #fff;
     border: 1px solid #dfe4ed;
-    color: main-color(500);
+    color: main-color(600);
     cursor: pointer;
     display: flex;
     font-size: 20px;
@@ -55,7 +55,7 @@
       right: auto;
     }
     &:hover {
-      color: main-color(A100);
+      color: main-color(600);
     }
   }
   .navbar-wrap {
@@ -66,7 +66,7 @@
 
     .navbar-header {
       align-items: center;
-      background: main-color(700);
+      background: main-color(600);
       color: #fff;
       display: flex;
       height: 70px;
