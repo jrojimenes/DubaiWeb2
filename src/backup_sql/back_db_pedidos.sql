@@ -566,6 +566,639 @@ LOCK TABLES `tallas_playeras` WRITE;
 INSERT INTO `tallas_playeras` VALUES (1,'XCH'),(2,'CH'),(3,'M'),(4,'G'),(5,'XG'),(6,'XXG'),(7,'XXXG'),(8,'XXXXG');
 /*!40000 ALTER TABLE `tallas_playeras` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'dubaiuni_dbpedidos'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `sp_actualizaDatosUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_actualizaDatosUsuario`(IN `idempleado` INT, IN `fccorreo` VARCHAR(40), IN `fctelefono` VARCHAR(40))
+BEGIN 
+UPDATE personal SET fctelefono = fctelefono ,fcmail = fccorreo
+       WHERE finumeroEmpleado = idempleado;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_consultaEmpleado` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_consultaEmpleado`(IN `IdEmpresa` INT, IN `IdEmpleado` INT)
+Begin
+
+DECLARE  CSIUNO    INT default 1;
+			SELECT p.fcnombrePersonal,
+				   p.fcapellidoPaterno,
+                   SUBSTRING_INDEX(p.fcapellidoMaterno,',', CSIUNO) AS fcapellidoMaterno,
+				   p.finumeroEmpleado,
+				   c.fcdescripcion as fccategoria,
+				   p.finumeroEmpleado,
+				   s.fcnombreSucursal,
+				   p.fcmail,
+				   p.fctelefono,
+				   e.fcnombre as fcNombreEmpresa,
+                   e.fiestatusEmpresa,
+                   tp.fiIdTipoPersonal
+			FROM personal p
+			LEFT JOIN personalcategorias c
+			on  p.ficategoria = c.fiIdCategoria
+			LEFT JOIN categoriatipopersonal tp
+			ON tp.fiIdTipoPersonal = c.fiTipoPersonal
+			LEFT JOIN sucursales s
+			ON s.fiIdSucursal = p.fisucursal
+			LEFT JOIN empresas e
+			ON e.fiIdEmpresa = s.fiEmpresa
+			WHERE p.finumeroEmpleado = IdEmpleado AND e.fiIdEmpresa = IdEmpresa;
+            
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_consultaEmpresas` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_consultaEmpresas`()
+BEGIN
+      SELECT fiIdEmpresa,
+			 fcnombre,
+             fcemail,
+			 fctelefono,
+             fiestatusEmpresa
+             FROM empresas;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_consultaRelacionCuelloPantalon` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_consultaRelacionCuelloPantalon`()
+BEGIN
+SELECT         fiIdRelcuelloPantalon,
+			   fcTallaCamisa,
+               fiTallaPantalon
+               FROM relacion_cuellopantalon;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_conusltaDetallePedidosEmpleados` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_conusltaDetallePedidosEmpleados`(IN `_tipoEmpleadoId` INT)
+BEGIN
+
+DECLARE  CSIUNO    INT default 1;
+DECLARE  CSIDOS    INT default 2;
+DECLARE  CSITRES   INT default 3;
+DECLARE  CSICUATRO INT default 4;
+DECLARE  CSICINCO  INT default 5;
+
+
+IF _tipoEmpleadoId = CSIUNO
+   THEN
+			SELECT  
+					cabp.fiIdEmpleado AS Numero_Empleado,
+					CONCAT(Pers.fcnombrePersonal,' ',  
+						   Pers.fcapellidoPaterno,' ',
+						   SUBSTRING_INDEX(Pers.fcapellidoMaterno,',', CSIUNO)) AS Nombre_Empleado,
+					cabp.fiTallaPantalon AS Talla_Pantalon,
+					cabp.fiTallaCamisa   AS Talla_Camisa,
+					cabp.fiLargoManga    AS Largo_Mangas,
+					prod.fcDescripcion   AS Prenda,
+					colrs.fcnombreColor  AS Color_Prenda,
+					CASE prod.fiIdProducto WHEN CSIUNO
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fidetallePantalon1 where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					WHEN CSIDOS
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fidetallePantalon2 where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					WHEN CSITRES
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fidetalleCamisaVino where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					WHEN CSICUATRO
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fidetalleCamisaGris where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					WHEN CSICINCO
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fiDetalleCamisaAzul where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					END
+					AS Caracteristica_Prenda,
+					detconf.fiCantidadProducto AS Cantidad,
+					cabp.fdFecha AS Fecha_Pedido
+					FROM 
+					 cabeceroPedido cabp
+			 
+					 LEFT JOIN detallePedido detp
+					 ON cabp.fiIdCabecero = detp.fiIdetallePed
+					 AND cabp.fiIdEmpleado = detp.iIdEmpleado
+			         
+					 LEFT JOIN detalle_configuracion_paquetes detconf
+					 ON detconf.fiIdEmpresa = cabp.fiIdEmpresa 
+					 AND detconf.fiIdTipoPersonal = _tipoEmpleadoId
+			
+					 LEFT JOIN productos prod
+					 ON prod.fiIdProducto = detconf.fiIdProducto
+			
+					 LEFT JOIN colores colrs
+					 ON colrs.fiIdColor = detconf.fiIdColor
+			
+					 LEFT JOIN personal Pers
+					 ON Pers.finumeroEmpleado = cabp.fiIdEmpleado
+			
+					 LEFT JOIN personalcategorias catPers
+					 ON catPers.fiIdCategoria = Pers.ficategoria
+			
+					 LEFT JOIN categoriatipopersonal tipPers
+					 ON catPers.fiTipoPersonal = tipPers.fiIdTipoPersonal
+					 WHERE tipPers.fiIdTipoPersonal = _tipoEmpleadoId
+                     AND cabp.fdFecha != '0000-00-00 00:00:00'
+					 ORDER BY Pers.finumeroEmpleado ASC;
+     
+     ELSEIF _tipoEmpleadoId = CSIDOS
+     THEN
+          SELECT  
+					cabp.fiIdEmpleado AS Numero_Empleado,
+					CONCAT(Pers.fcnombrePersonal,' ',  
+						   Pers.fcapellidoPaterno,' ',
+						   SUBSTRING_INDEX(Pers.fcapellidoMaterno,',', CSIUNO)) AS Nombre_Empleado,
+					cabp.fiTallaPantalon AS Talla_Pantalon,
+					cabp.fcTallaPlayera AS Talla_Plallera,
+					prod.fcDescripcion AS Prenda,
+					colrs.fcnombreColor AS Color_Prenda,
+                    detconf.fcUrlImagen AS Url_Imagen,
+					detconf.fiCantidadProducto AS Cantidad,
+					cabp.fdFecha AS Fecha_Pedido
+					FROM 
+					 cabeceroPedido cabp
+			 
+					 LEFT JOIN detallePedido detp
+					 ON cabp.fiIdCabecero = detp.fiIdetallePed
+					 AND cabp.fiIdEmpleado = detp.iIdEmpleado
+			         
+					 LEFT JOIN detalle_configuracion_paquetes detconf
+					 ON detconf.fiIdEmpresa = cabp.fiIdEmpresa 
+					 AND detconf.fiIdTipoPersonal = _tipoEmpleadoId
+			
+					 LEFT JOIN productos prod
+					 ON prod.fiIdProducto = detconf.fiIdProducto
+			
+					 LEFT JOIN colores colrs
+					 ON colrs.fiIdColor = detconf.fiIdColor
+			
+					 LEFT JOIN personal Pers
+					 ON Pers.finumeroEmpleado = cabp.fiIdEmpleado
+			
+					 LEFT JOIN personalcategorias catPers
+					 ON catPers.fiIdCategoria = Pers.ficategoria
+			
+					 LEFT JOIN categoriatipopersonal tipPers
+					 ON catPers.fiTipoPersonal = tipPers.fiIdTipoPersonal
+					 WHERE tipPers.fiIdTipoPersonal = _tipoEmpleadoId
+                     AND cabp.fdFecha != '0000-00-00 00:00:00'
+					 ORDER BY Pers.finumeroEmpleado ASC;
+END IF; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_conusltaPedidoEmpleado` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_conusltaPedidoEmpleado`(IN `_empleadoId` INT, IN `_tipoEmpleadoId` INT)
+BEGIN
+
+DECLARE  CSIUNO    INT default 1;
+DECLARE  CSIDOS    INT default 2;
+DECLARE  CSITRES   INT default 3;
+DECLARE  CSICUATRO INT default 4;
+DECLARE  CSICINCO  INT default 5;
+
+
+IF _tipoEmpleadoId = CSIUNO
+   THEN
+			SELECT  
+					cabp.fiIdEmpleado AS Numero_Empleado,
+					CONCAT(Pers.fcnombrePersonal,' ',  
+						   Pers.fcapellidoPaterno,' ',
+						   SUBSTRING_INDEX(Pers.fcapellidoMaterno,',', CSIUNO)) AS Nombre_Empleado,
+					cabp.fiTallaPantalon AS Talla_Pantalon,
+					cabp.fiTallaCamisa   AS Talla_Camisa,
+					cabp.fiLargoManga    AS Largo_Mangas,
+					cabp.fcTallaPlayera  AS Talla_Plallera,
+					prod.fcDescripcion   AS Prenda,
+                    detconf.fcUrlImagen  AS Url_Imagen,
+					colrs.fcnombreColor  AS Color_Prenda,
+					CASE prod.fiIdProducto WHEN CSIUNO
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fidetallePantalon1 where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					WHEN CSIDOS
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fidetallePantalon2 where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					WHEN CSITRES
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fidetalleCamisaVino where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					WHEN CSICUATRO
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fidetalleCamisaGris where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					WHEN CSICINCO
+					THEN (SELECT cp.fcDescripcion FROM detallePedido dp left join caracteristicas_producto cp on cp.fiIdCaract = dp.fiDetalleCamisaAzul where dp.iIdEmpleado = Pers.finumeroEmpleado)
+					END
+					AS Caracteristica_Prenda,
+					detconf.fiCantidadProducto AS Cantidad,
+					cabp.fdFecha AS Fecha_Pedido,
+                    prod.fiIdProducto AS Id_Producto
+					FROM 
+					 cabeceroPedido cabp
+			 
+					 LEFT JOIN detallePedido detp
+					 ON cabp.fiIdCabecero = detp.fiIdetallePed
+					 AND cabp.fiIdEmpleado = detp.iIdEmpleado
+			         
+					 LEFT JOIN detalle_configuracion_paquetes detconf
+					 ON detconf.fiIdEmpresa = cabp.fiIdEmpresa 
+					 AND detconf.fiIdTipoPersonal = _tipoEmpleadoId
+			
+					 LEFT JOIN productos prod
+					 ON prod.fiIdProducto = detconf.fiIdProducto
+			
+					 LEFT JOIN colores colrs
+					 ON colrs.fiIdColor = detconf.fiIdColor
+			
+					 LEFT JOIN personal Pers
+					 ON Pers.finumeroEmpleado = cabp.fiIdEmpleado
+			
+					 LEFT JOIN personalcategorias catPers
+					 ON catPers.fiIdCategoria = Pers.ficategoria
+			
+					 LEFT JOIN categoriatipopersonal tipPers
+					 ON catPers.fiTipoPersonal = tipPers.fiIdTipoPersonal
+					 WHERE cabp.fiIdEmpleado = _empleadoId
+					 AND tipPers.fiIdTipoPersonal = _tipoEmpleadoId
+					 ORDER BY Pers.finumeroEmpleado ASC;
+     
+     ELSEIF _tipoEmpleadoId = CSIDOS
+     THEN
+          SELECT  
+					cabp.fiIdEmpleado AS Numero_Empleado,
+					CONCAT(Pers.fcnombrePersonal,' ',  
+						   Pers.fcapellidoPaterno,' ',
+						   SUBSTRING_INDEX(Pers.fcapellidoMaterno,',', CSIUNO)) AS Nombre_Empleado,
+					cabp.fiTallaPantalon AS Talla_Pantalon,
+					cabp.fcTallaPlayera AS Talla_Plallera,
+					prod.fcDescripcion AS Prenda,
+					colrs.fcnombreColor AS Color_Prenda,
+                    detconf.fcUrlImagen AS Url_Imagen,
+					detconf.fiCantidadProducto AS Cantidad,
+					cabp.fdFecha AS Fecha_Pedido,
+                    prod.fiIdProducto AS Id_Producto
+					FROM 
+					 cabeceroPedido cabp
+			 
+					 LEFT JOIN detallePedido detp
+					 ON cabp.fiIdCabecero = detp.fiIdetallePed
+					 AND cabp.fiIdEmpleado = detp.iIdEmpleado
+			         
+					 LEFT JOIN detalle_configuracion_paquetes detconf
+					 ON detconf.fiIdEmpresa = cabp.fiIdEmpresa 
+					 AND detconf.fiIdTipoPersonal = _tipoEmpleadoId
+			
+					 LEFT JOIN productos prod
+					 ON prod.fiIdProducto = detconf.fiIdProducto
+			
+					 LEFT JOIN colores colrs
+					 ON colrs.fiIdColor = detconf.fiIdColor
+			
+					 LEFT JOIN personal Pers
+					 ON Pers.finumeroEmpleado = cabp.fiIdEmpleado
+			
+					 LEFT JOIN personalcategorias catPers
+					 ON catPers.fiIdCategoria = Pers.ficategoria
+			
+					 LEFT JOIN categoriatipopersonal tipPers
+					 ON catPers.fiTipoPersonal = tipPers.fiIdTipoPersonal
+					 WHERE cabp.fiIdEmpleado = _empleadoId
+					 AND tipPers.fiIdTipoPersonal = _tipoEmpleadoId
+					 ORDER BY Pers.finumeroEmpleado ASC;
+END IF; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_guardacabeceroPed` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_guardacabeceroPed`(IN `_fiIdEmpleado` INT, IN `_fiIdEmpresa` INT, IN `_fiTallaPantalon` INT, IN `_fiTallaCamisa` INT, IN `_fiLargoManga` INT, IN `_fcTallaPlayera` VARCHAR(30))
+BEGIN
+DECLARE idRegistro  INT;
+IF (EXISTS(select fiIdEmpleado from cabeceroPedido where fiIdEmpleado = _fiIdEmpleado AND  fiIdEmpresa = _fiIdEmpresa))
+THEN
+SET idRegistro = (SELECT fiIdCabecero FROM cabeceroPedido WHERE fiIdEmpleado = _fiIdEmpleado AND fiIdEmpresa = _fiIdEmpresa);
+UPDATE cabeceroPedido SET fiTallaPantalon = _fiTallaPantalon,fiTallaCamisa = _fiTallaCamisa, 
+						  fiLargoManga = _fiLargoManga, fcTallaPlayera = _fcTallaPlayera, fdFecha = (select now()) 
+                          WHERE fiIdCabecero = idRegistro;
+ELSE
+INSERT INTO cabeceroPedido ( fiIdEmpleado, fiIdEmpresa, fiTallaPantalon, fiTallaCamisa, fiLargoManga, fcTallaPlayera , fdFecha) 
+                    values ( _fiIdEmpleado, _fiIdEmpresa, _fiTallaPantalon, _fiTallaCamisa, _fiLargoManga, _fcTallaPlayera, (select now()));
+
+SET idRegistro = (select last_insert_id());
+END IF;
+SELECT idRegistro AS lastId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_guardadetallePedido` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_guardadetallePedido`(IN `_fiIdetallePed` INT, IN `_iIdEmpleado` INT, IN `_fiIdEmpresa` INT, IN `_fidetallePantalon1` INT, IN `_fidetallePantalon2` INT, IN `_fidetalleCamisaVino` INT, IN `_fidetalleCamisaGris` INT, IN `_fiDetalleCamisaAzul` INT)
+BEGIN
+
+IF (exists((select iIdEmpleado from detallePedido where  fiIdetallePed = _fiIdetallePed)))
+THEN
+UPDATE detallePedido SET fidetallePantalon1 = _fidetallePantalon1, fidetallePantalon2 = _fidetallePantalon2, fidetalleCamisaVino = _fidetalleCamisaVino, 
+                         fidetalleCamisaGris = _fidetalleCamisaGris, fiDetalleCamisaAzul = _fiDetalleCamisaAzul
+                     WHERE fiIdetallePed = _fiIdetallePed;
+ELSE
+INSERT INTO detallePedido ( fiIdetallePed, iIdEmpleado, fiIdEmpresa, fidetallePantalon1, fidetallePantalon2, fidetalleCamisaVino, fidetalleCamisaGris, fiDetalleCamisaAzul) 
+				   values ( _fiIdetallePed, _iIdEmpleado, _fiIdEmpresa, _fidetallePantalon1, _fidetallePantalon2, _fidetalleCamisaVino, _fidetalleCamisaGris, _fiDetalleCamisaAzul);
+END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_guardaMensajeUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_guardaMensajeUsuario`(IN `_fiIdEmpleado` INT, IN `_fcAsuntoMensaje` VARCHAR(40), IN `_fcDetalleMensaje` VARCHAR(100))
+BEGIN
+  
+  INSERT INTO mensajesUsuario (fiIdEmpleado, fiIdEmpresa, fcAsuntoMensaje, fcDetalleMensaje, fcTelefonoContacto, fcMail, fdFecha)
+   SELECT p.finumeroEmpleado,
+          em.fiIdEmpresa,
+          _fcAsuntoMensaje as fcAsuntoMensaje,
+          _fcDetalleMensaje as fcDetalleMensaje,
+          p.fctelefono,
+          p.fcmail,
+          (select now()) as fdFecha
+          FROM personal p
+          LEFT JOIN sucursales suc
+          ON p.fisucursal = suc.fiIdSucursal
+          LEFT JOIN empresas em
+          ON suc.fiEmpresa = em.fiIdEmpresa
+		  where finumeroEmpleado = _fiIdEmpleado;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_medidasTallaPantalon` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_medidasTallaPantalon`()
+BEGIN
+SELECT talla as fitalla,
+       pulgadas as cpulgadas,
+       centimetros as fncentimetros,
+       menor as fnrangoMenor,
+       mayor as fnrangoMayor
+       FROM talla_pantalon
+ORDER BY fitalla ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_obtieneConfiguracionPaquetes` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_obtieneConfiguracionPaquetes`(IN `idEmpresa` INT, IN `idEmpreado` INT)
+BEGIN
+DECLARE idtipoPersonal int;
+
+ set idtipoPersonal = (SELECT tp.fiIdTipoPersonal 
+                            FROM personal p
+							inner join personalcategorias pc
+                            on p.ficategoria = pc.fiIdCategoria
+                            inner join categoriatipopersonal tp
+                            on pc.fiTipoPersonal = tp.fiIdTipoPersonal
+                            where p.finumeroEmpleado = idEmpreado);
+
+       SELECT p.fiIdDetallePaquetes,
+			  pd.fcDescripcion,
+              p.fiCantidadProducto,
+			  cl.fcnombreColor,
+              cl.fccodigoHTML,
+              p.fcUrlImagen,
+              '' as fiIdCraracteristica,
+              pd.fiIdProducto
+              FROM detalle_configuracion_paquetes p
+              LEFT JOIN productos pd
+              ON p.fiIdProducto = pd.fiIdProducto
+              AND p.fiIdEmpresa = idEmpresa
+              LEFT JOIN colores cl
+              ON p.fiIdColor = cl.fiIdColor
+              LEFT JOIN empresas em
+              ON p.fiIdEmpresa = em.fiIdEmpresa
+              WHERE p.fiIdTipoPersonal = idtipoPersonal;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_obtieneDetalleProductos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_obtieneDetalleProductos`(IN `fiIdEmpresa` INT)
+BEGIN
+   select  dcfp.fiIdDetallePaquetes,
+           dcp.fiIdProducto,
+           cp.fcDescripcion,
+           cp.fiIdCaract
+          from detalle_caract_producto dcp
+          LEFT JOIN detalle_configuracion_paquetes dcfp
+          on dcp.fiIdDetalleConfig = dcfp.fiIdDetallePaquetes
+          INNER JOIN empresas emp
+          on emp.fiIdEmpresa = dcfp.fiIdEmpresa
+          LEFT JOIN productos prod
+          on prod.fiIdProducto = dcp.fiIdProducto
+          LEFT JOIN caracteristicas_producto cp
+          on cp.fiIdCaract = dcp.fiIdCaracteristica 
+          where emp.fiIdEmpresa = fiIdEmpresa;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_relacioncamisapantalon` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_relacioncamisapantalon`()
+BEGIN
+       SELECT 
+              talla_camisa as fntallacamisa,
+              talla_pantalon as fntallapantalon,
+              talla_camisa_comercial as fntallacomercialcamisa
+              FROM camisa_pantalon 
+			  order by talla_pantalon asc;
+
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_tallasplayera` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_tallasplayera`()
+BEGIN
+       SELECT 
+              fiIdtallaPlayera,
+              fctallacamisa as fntallacamisa
+              FROM tallas_playeras 
+			  order by fiIdtallaPlayera asc;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_verificaPedidoExistenteEmpleado` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`desarrollo`@`localhost` PROCEDURE `sp_verificaPedidoExistenteEmpleado`(IN `_empleadoId` INT, IN `_empresaId` INT)
+BEGIN
+DECLARE VIRESULTADO INT default null;
+
+SET VIRESULTADO = (SELECT COUNT(*) FROM cabeceroPedido WHERE  fiIdEmpleado =  _empleadoId AND fiIdEmpresa = _empresaId);
+
+SELECT VIRESULTADO;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -576,4 +1209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-07 19:52:04
+-- Dump completed on 2021-07-07 22:40:59
